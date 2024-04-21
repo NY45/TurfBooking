@@ -1,0 +1,46 @@
+package com.example.demo.Model;
+
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+@Data
+@NoArgsConstructor
+@Entity
+@Table(name = "turfs")
+public class Turf {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "turf_name")
+    private String turfName;
+
+    @Column(name = "turf_location")
+    private String turfLocation;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
+
+    private int capacity;
+
+    @Column(name = "price_per_hour")
+    private double pricePerHour;
+
+    @Column(name = "other_info")
+    private String otherInfo;
+
+
+    @Override
+    public String toString() {
+        return "Turf{" +
+                "id=" + id +
+                ", turfName='" + turfName + '\'' +
+                ", turfLocation='" + turfLocation + '\'' +
+                ", owner=" + owner +
+                ", capacity=" + capacity +
+                ", pricePerHour=" + pricePerHour +
+                ", otherInfo='" + otherInfo + '\'' +
+                '}';
+    }
+}

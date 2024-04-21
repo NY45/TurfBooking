@@ -1,0 +1,38 @@
+package com.example.demo.Model;
+
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Data
+@NoArgsConstructor
+@Entity
+@Table(name = "review")
+@Getter @Setter
+public class Review {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(nullable = false)
+    private String comment;
+    
+    @Column(nullable = false)
+    private int rating;
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+    
+    
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", comment='" + comment + '\'' +
+                ", rating=" + rating +
+                ", user=" + user +
+                '}';
+    }
+}

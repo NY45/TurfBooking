@@ -1,0 +1,60 @@
+package com.example.demo.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.Model.Receipt;
+import com.example.demo.Model.User;
+import com.example.demo.Repository.ReceiptRepo;
+import com.example.demo.Repository.UserRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+    
+    @Autowired
+    private ReceiptRepo receiptRepository;
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public User createUser(User user) {
+        // Check if a user with the same email already exists
+        if (isUserExistsByEmail(user.getEmail())) {
+            throw new RuntimeException("User with the same email already exists");
+        }
+        return userRepository.save(user);
+    }
+
+    public User getUserById(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        return userOptional.orElse(null);
+    }
+
+    public boolean isUserExistsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+    
+    public Receipt getReceiptById(Long id) {
+        Optional<Receipt> receiptOptional = receiptRepository.findById(id);
+        return receiptOptional.orElse(null);
+    }
+
+	public User getUserByEmail(String email) {
+		 return userRepository.findByEmail(email);
+	}
+}

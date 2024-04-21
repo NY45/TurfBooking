@@ -1,0 +1,15 @@
+package com.example.demo.Service;
+
+import java.util.List;
+
+import com.example.demo.Model.Booking;
+import com.example.demo.Repository.BookingRepository;
+
+public class BookingService {
+
+	public List<Booking> getAllBookings() {
+         return bookingRepository.findAll();
+		return null;
+	}
+
+}

@@ -1,0 +1,36 @@
+package com.example.demo.Service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.Model.Booking;
+import com.example.demo.Repository.BookingRepository;
+@Service
+public class BookingService {
+	
+	private BookingRepository bookingRepository;
+
+	public List<Booking> getAllBookings() {
+         return bookingRepository.findAll();
+	}
+
+	public Booking createBooking(Booking booking) {
+		return bookingRepository.save(booking);
+	}
+
+	@SuppressWarnings("deprecation")
+	public Booking getBookingById(Long id) {
+		return bookingRepository.getById(id);
+	}
+
+	public Booking updateBooking(Booking booking) {
+		return bookingRepository.save(booking);
+	}
+
+	public void deleteBooking(Long id) {
+		bookingRepository.deleteById(id);
+		
+	}
+
+}

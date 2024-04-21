@@ -1,0 +1,113 @@
+package com.example.demo.Model;
+import javax.persistence.*;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "turfs")
+public class Turf {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "turf_name")
+    private String turfName;
+
+    @Column(name = "turf_location")
+    private String turfLocation;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
+
+    private int capacity;
+
+    @Column(name = "price_per_hour")
+    private double pricePerHour;
+
+    @Column(name = "other_info")
+    private String otherInfo;
+
+    // Constructors, getters, and setters
+
+    public Turf() {
+    }
+
+    public Turf(String turfName, String turfLocation, User owner, int capacity, double pricePerHour, String otherInfo) {
+        this.turfName = turfName;
+        this.turfLocation = turfLocation;
+        this.owner = owner;
+        this.capacity = capacity;
+        this.pricePerHour = pricePerHour;
+        this.otherInfo = otherInfo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTurfName() {
+        return turfName;
+    }
+
+    public void setTurfName(String turfName) {
+        this.turfName = turfName;
+    }
+
+    public String getTurfLocation() {
+        return turfLocation;
+    }
+
+    public void setTurfLocation(String turfLocation) {
+        this.turfLocation = turfLocation;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public double getPricePerHour() {
+        return pricePerHour;
+    }
+
+    public void setPricePerHour(double pricePerHour) {
+        this.pricePerHour = pricePerHour;
+    }
+
+    public String getOtherInfo() {
+        return otherInfo;
+    }
+
+    public void setOtherInfo(String otherInfo) {
+        this.otherInfo = otherInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "Turf{" +
+                "id=" + id +
+                ", turfName='" + turfName + '\'' +
+                ", turfLocation='" + turfLocation + '\'' +
+                ", owner=" + owner +
+                ", capacity=" + capacity +
+                ", pricePerHour=" + pricePerHour +
+                ", otherInfo='" + otherInfo + '\'' +
+                '}';
+    }
+}
